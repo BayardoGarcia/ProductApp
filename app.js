@@ -35,6 +35,19 @@ class UserInterface{
             element.parentElement.parentElement.parentElement.remove();
         }
     }
+    showMessage(message, cssClass){
+        const div = document.createElement("div");
+        div.className = `alert alert-${cssClass} mt-3 mb-0`;
+        div.appendChild(document.createTextNode(message));
+        //Mostrando Mensaje
+        const container = document.querySelector(".container");
+        const app = document.querySelector("#app")
+        container.insertBefore(div, app);
+
+        setTimeout(function () {
+            document.querySelector(".alert").remove();
+          }, 3000);
+    }
 }
 
 //Eventos del DOM
@@ -51,9 +64,10 @@ function getProduct(e){
 
     const ui = new UserInterface();
     ui.addProduct(product);
+    ui.showMessage("Producto Agregado Exitosamente", "success");
     ui.resetForm();
+    
 }
-
 
 function deleteProduct(e){
     const ui = new UserInterface();
